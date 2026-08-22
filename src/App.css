@@ -1,0 +1,290 @@
+/* App.css - Clean PDF Statement with Floating Download Button */
+
+/* ─── Page Layout ──────────────────────────────────────────── */
+.statement-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px 20px 80px 20px;
+  background: radial-gradient(circle at 10% 20%, rgb(15, 23, 42) 0%, rgb(9, 13, 26) 90%);
+}
+
+/* ─── Floating Download Button ─────────────────────────────── */
+.download-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  box-shadow:
+    0 8px 24px rgba(2, 132, 199, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.download-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 32px rgba(2, 132, 199, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.download-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 16px rgba(2, 132, 199, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.download-btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+/* Spinner animation */
+.download-btn-spinner {
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─── PDF Sheet ────────────────────────────────────────────── */
+.pdf-sheet {
+  width: 941.54px;
+  min-width: 941.54px;
+  height: auto;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* Single CSS-bordered page content wrapper */
+.page-content {
+  width: 770px; /* Matches cropped image width: 2310px / 3 */
+  border: 1.5px solid var(--pdf-border-color);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  margin: 20px auto;
+}
+
+/* ─── Header and Footer images ─────────────────────────────── */
+.header-img,
+.footer-img {
+  width: 100%;
+  display: block;
+}
+
+.header-img {
+  height: auto;
+}
+
+.footer-img {
+  height: auto;
+}
+
+/* ─── To/From Section ──────────────────────────────────────── */
+.to-from-section {
+  padding: 15px 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-sizing: border-box;
+  border-bottom: 1.5px solid var(--pdf-border-color);
+  margin-bottom: 15px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: flex-start;
+  font-size: 11.45px;
+}
+
+.info-label {
+  font-weight: bold;
+  color: #000000;
+  padding-top: 2px;
+}
+
+.info-value {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-text {
+  display: block;
+  padding: 2px 4px;
+  color: #000000;
+  font-size: 11.45px;
+  line-height: 1.4;
+}
+
+.info-text-bold {
+  font-weight: bold;
+}
+
+/* ─── Table ────────────────────────────────────────────────── */
+.table-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.statement-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Column widths — must sum to ~767px (770px - 3px border) */
+.col-sl { width: 30px; }
+.col-invoice { width: 145px; }
+.col-months { width: 80px; }
+.col-date { width: 85px; }
+.col-amount { width: 105px; }
+.col-received { width: 95px; }
+.col-pending { width: 105px; }
+.col-remarks { width: 122px; }
+
+.statement-table th {
+  background-color: var(--pdf-table-header-bg);
+  border-top: 1px solid var(--pdf-border-color);
+  border-bottom: 1px solid var(--pdf-border-color);
+  border-right: 1px solid var(--pdf-inner-border-color);
+  color: #000000;
+  font-size: 11.45px;
+  font-weight: bold;
+  padding: 6px 4px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.statement-table th:last-child {
+  border-right: none;
+}
+
+.statement-table td {
+  border-bottom: 1px solid var(--pdf-inner-border-color);
+  border-right: 1px solid var(--pdf-inner-border-color);
+  color: #000000;
+  font-size: 13.48px;
+  padding: 4px 2px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.statement-table td:last-child {
+  border-right: none;
+}
+
+/* Column Alignments */
+.statement-table td.cell-sl,
+.statement-table td.cell-invoice,
+.statement-table td.cell-months,
+.statement-table td.cell-date,
+.statement-table td.cell-amount,
+.statement-table td.cell-received,
+.statement-table td.cell-pending,
+.statement-table td.cell-remarks {
+  text-align: center;
+}
+
+.statement-table td.cell-amount,
+.statement-table td.cell-pending {
+  font-weight: normal;
+}
+
+.statement-table td.cell-received {
+  font-weight: bold;
+}
+
+/* Total Row */
+.total-row {
+  background-color: var(--pdf-total-row-bg) !important;
+}
+
+.total-row td {
+  font-weight: bold !important;
+  font-size: 14.59px !important;
+  padding: 6px 6px !important;
+}
+
+.total-label-cell {
+  text-align: center !important;
+  font-weight: bold !important;
+}
+
+/* ─── Signature Block ──────────────────────────────────────── */
+.signature-section {
+  padding: 25px 24px 30px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11.45px;
+  color: #000000;
+  box-sizing: border-box;
+}
+
+.signature-name {
+  font-weight: bold;
+}
+
+.signature-title {
+  font-weight: normal;
+}
+
+.signature-company {
+  font-weight: bold;
+  color: var(--pdf-signature-blue);
+}
+
+.signature-contact {
+  font-weight: normal;
+}
+
+/* ─── Print Styles ─────────────────────────────────────────── */
+@media print {
+  body {
+    background-color: #ffffff !important;
+  }
+  .statement-page {
+    background: none !important;
+    padding: 0 !important;
+  }
+  .download-btn {
+    display: none !important;
+  }
+  .pdf-sheet {
+    box-shadow: none !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+}
