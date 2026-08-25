@@ -95,19 +95,92 @@
   margin: 20px auto;
 }
 
-/* ─── Header and Footer images ─────────────────────────────── */
-.header-img,
-.footer-img {
-  width: 100%;
+/* ─── Header Section ───────────────────────────────────────── */
+.header-section {
+  display: flex;
+  align-items: center;
+  padding: 18px 24px 14px 24px;
+  gap: 16px;
+  border-bottom: 2px solid var(--pdf-border-color);
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.header-logo {
+  width: 100px;
+  height: auto;
   display: block;
 }
 
-.header-img {
-  height: auto;
+.header-cr {
+  font-size: 11px;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
-.footer-img {
-  height: auto;
+.header-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  text-align: right;
+}
+
+.header-company-en {
+  font-size: 22px;
+  font-weight: 900;
+  color: #003087;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.header-company-ar {
+  font-size: 26px;
+  font-weight: 800;
+  color: #006633;
+  line-height: 1.3;
+  font-family: 'Arial', 'Tahoma', sans-serif;
+  direction: rtl;
+}
+
+/* ─── Footer Section ───────────────────────────────────────── */
+.footer-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 10px 16px;
+  background-color: #1a2744;
+  color: #d4cba8;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: #1a2744;
+  background: linear-gradient(135deg, #c9a84c, #a67c2e);
+  border-radius: 50%;
+  padding: 4px;
 }
 
 /* ─── To/From Section ──────────────────────────────────────── */
@@ -165,14 +238,15 @@
 }
 
 /* Column widths — must sum to ~767px (770px - 3px border) */
-.col-sl { width: 30px; }
-.col-invoice { width: 145px; }
-.col-months { width: 80px; }
-.col-date { width: 85px; }
-.col-amount { width: 105px; }
-.col-received { width: 95px; }
-.col-pending { width: 105px; }
-.col-remarks { width: 122px; }
+.col-sl { width: 28px; }
+.col-invoice { width: 120px; }
+.col-months { width: 70px; }
+.col-date { width: 75px; }
+.col-amount { width: 95px; }
+.col-received { width: 90px; }
+.col-rec-date { width: 85px; }
+.col-pending { width: 95px; }
+.col-remarks { width: 109px; }
 
 .statement-table th {
   background-color: var(--pdf-table-header-bg);
@@ -212,6 +286,7 @@
 .statement-table td.cell-date,
 .statement-table td.cell-amount,
 .statement-table td.cell-received,
+.statement-table td.cell-rec-date,
 .statement-table td.cell-pending,
 .statement-table td.cell-remarks {
   text-align: center;

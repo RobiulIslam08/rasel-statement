@@ -15,23 +15,23 @@ const statementData = {
   },
   from: {
     label: 'From',
-    company: 'HK-Hassan Khamis Bin Mohammad AL Buainain Gen Cont Est.'
+    company: 'Mubarak Masoud Zubaid Cont. Co.'
   },
   rows: [
-    { sl: 1, invoiceNumber: 'GS/MIP/1278', invoiceMonths: 'Jan-26', invoiceDate: '31-01-26', invoiceAmount: '4,409.10', receivedAmount: '0.00', remarks: 'Over Due' },
-    { sl: 2, invoiceNumber: 'GS/MIP/88', invoiceMonths: 'Feb-26', invoiceDate: '28-02-26', invoiceAmount: '41,129.75', receivedAmount: '0.00', remarks: 'Over Due' },
-    { sl: 3, invoiceNumber: 'GS/MIP/90', invoiceMonths: 'Mar-26', invoiceDate: '31-03-26', invoiceAmount: '36,520.55', receivedAmount: '36,520.55', remarks: 'Paid' },
-    { sl: 4, invoiceNumber: 'GS/MIP/93', invoiceMonths: 'Apr-26', invoiceDate: '30-04-26', invoiceAmount: '49,019.90', receivedAmount: '0.00', remarks: 'Over Due' },
-    { sl: 5, invoiceNumber: 'GS/MIP/98', invoiceMonths: 'May-26', invoiceDate: '31-05-26', invoiceAmount: '43,633.30', receivedAmount: '0.00', remarks: 'Over Due' },
-    { sl: 6, invoiceNumber: 'GS/MIP/101', invoiceMonths: 'Jun-26', invoiceDate: '30-06-26', invoiceAmount: '37,690.10', receivedAmount: '0.00', remarks: 'Over Due' },
-    { sl: 7, invoiceNumber: 'GS/MIP/104', invoiceMonths: 'Jul-26', invoiceDate: '30-07-26', invoiceAmount: '28,678.70', receivedAmount: '0.00', remarks: 'Over Due' },
+    { sl: 1, invoiceNumber: 'GS/MIP/1278', invoiceMonths: 'Jan-26', invoiceDate: '31-01-26', invoiceAmount: '4,409.10', receivedAmount: '0.00', receivedDate: '', remarks: 'Over Due' },
+    { sl: 2, invoiceNumber: 'GS/MIP/88', invoiceMonths: 'Feb-26', invoiceDate: '28-02-26', invoiceAmount: '41,129.75', receivedAmount: '0.00', receivedDate: '', remarks: 'Over Due' },
+    { sl: 3, invoiceNumber: 'GS/MIP/90', invoiceMonths: 'Mar-26', invoiceDate: '31-03-26', invoiceAmount: '36,520.55', receivedAmount: '36,520.55', receivedDate: '15-04-26', remarks: 'Paid' },
+    { sl: 4, invoiceNumber: 'GS/MIP/93', invoiceMonths: 'Apr-26', invoiceDate: '30-04-26', invoiceAmount: '49,019.90', receivedAmount: '0.00', receivedDate: '', remarks: 'Over Due' },
+    { sl: 5, invoiceNumber: 'GS/MIP/98', invoiceMonths: 'May-26', invoiceDate: '31-05-26', invoiceAmount: '43,633.30', receivedAmount: '0.00', receivedDate: '', remarks: 'Over Due' },
+    { sl: 6, invoiceNumber: 'GS/MIP/101', invoiceMonths: 'Jun-26', invoiceDate: '30-06-26', invoiceAmount: '37,690.10', receivedAmount: '0.00', receivedDate: '', remarks: 'Over Due' },
+    { sl: 7, invoiceNumber: 'GS/MIP/104', invoiceMonths: 'Jul-26', invoiceDate: '30-07-26', invoiceAmount: '28,678.70', receivedAmount: '0.00', receivedDate: '', remarks: 'Over Due' },
   ],
   signature: {
     name: 'Mohammad Ridoy.',
     title: 'Marketing Manager',
-    company: 'Hasan Khamis Bin Mohammad Al Buainain General Contracting Est.',
-    mobile: 'Mobile - 0564224811 / 0577041348',
-    email: 'Email: info@hassankhamis.com'
+    company: 'Mubarak Masoud Zubaid Cont. Co.',
+    mobile: 'Mobile - 0548343869',
+    email: 'Email: info@mgc-contracting'
   }
 };
 
@@ -84,8 +84,17 @@ function StatementSheet({ data }) {
   return (
     <div className="pdf-sheet" id="pdf-sheet">
       <div className="page-content">
-        {/* Header Image */}
-        <img src="/header_clean.png" alt="Company Header" className="header-img" />
+        {/* ── Header Section ── */}
+        <div className="header-section">
+          <div className="header-left">
+            <img src="/MGC_logo2.png" alt="MGC Logo" className="header-logo" />
+            <span className="header-cr">C.R. 2055150102</span>
+          </div>
+          <div className="header-right">
+            <div className="header-company-en">MUBARAK MASOUD ZUBAID CONT. Co.</div>
+            <div className="header-company-ar">شركة مبارك مسعود زبيد للمقاولات</div>
+          </div>
+        </div>
 
         {/* To/From Information */}
         <div className="to-from-section">
@@ -115,6 +124,7 @@ function StatementSheet({ data }) {
                 <th className="col-date">Invoice<br />Date</th>
                 <th className="col-amount">Invoice<br />Amount</th>
                 <th className="col-received">Received<br />Amount</th>
+                <th className="col-rec-date">Payment<br />Receive Date</th>
                 <th className="col-pending">Pending<br />Amount</th>
                 <th className="col-remarks">Remarks</th>
               </tr>
@@ -128,6 +138,7 @@ function StatementSheet({ data }) {
                   <td className="cell-date">{row.invoiceDate}</td>
                   <td className="cell-amount">{row.invoiceAmount}</td>
                   <td className="cell-received">{row.receivedAmount}</td>
+                  <td className="cell-rec-date">{row.receivedDate}</td>
                   <td className="cell-pending">{row.pendingAmount}</td>
                   <td className="cell-remarks">{row.remarks}</td>
                 </tr>
@@ -139,6 +150,7 @@ function StatementSheet({ data }) {
                 <td></td>
                 <td style={{ textAlign: 'center' }}>{totals.invoiceAmount}</td>
                 <td style={{ textAlign: 'center' }}>{totals.receivedAmount}</td>
+                <td></td>
                 <td style={{ textAlign: 'center' }}>{totals.pendingAmount}</td>
                 <td></td>
               </tr>
@@ -155,8 +167,30 @@ function StatementSheet({ data }) {
           <div className="signature-contact">{signature.email}</div>
         </div>
 
-        {/* Footer Image */}
-        <img src="/footer_clean.png" alt="Company Footer" className="footer-img" />
+        {/* ── Footer Section ── */}
+        <div className="footer-section">
+          <div className="footer-item">
+            <svg className="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+              <path d="M2 7l8.165 5.715a3 3 0 003.67 0L22 7" stroke="currentColor" strokeWidth="1.5"/>
+            </svg>
+            <span>info@mgc-contracting</span>
+          </div>
+          <div className="footer-item">
+            <svg className="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" strokeWidth="1.5"/>
+              <circle cx="12" cy="9" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
+            </svg>
+            <span>PO Box 35811-Al-Jubail 31951, Kingdom of Saudi Arabia</span>
+          </div>
+          <div className="footer-item">
+            <svg className="footer-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" strokeWidth="1.5"/>
+            </svg>
+            <span>https://www.mgc-contracting.online/</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -176,7 +210,7 @@ function App() {
 
     const opt = {
       margin: 0,
-      filename: 'HK_Hassan_Khamis_Statement.pdf',
+      filename: 'MGC_Mubarak_Masoud_Zubaid_Statement.pdf',
       image: { type: 'jpeg', quality: 1.0 },
       html2canvas: {
         scale: 3,
